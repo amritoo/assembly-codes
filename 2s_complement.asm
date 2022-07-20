@@ -14,16 +14,20 @@ output DW "the 2's complement is: $"
 .code
 
 main PROC
-    ; storing all variables in data segment
+    ; Storing all variables in data segment
     MOV AX, @data
     MOV DS, AX
 
-    ; calculating 2's complement
-    MOV BL, num
-    NOT BL
-    ADD BL, 1
+    ; Calculating 2's complement
+    MOV BL, num     ; Store the value of num in BL register
+    NOT BL          ; Complement the value in BL register
+    ADD BL, 1       ; Add 1 to the value in BL and store the result in BL register
 
-    ; outputting the result in ascii code
+    ; Short way
+    MOV BL, num
+    NEG BL
+
+    ; Outputting the result in ascii code
     MOV AH, 9
     LEA DX, output
     INT 21H
